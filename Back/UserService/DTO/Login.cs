@@ -2,10 +2,10 @@
 
 namespace UserService.DTO
 {
-    public class LoginUser
+    public class Login
     {
         [Required]
-        public string Username { get; set; } = string.Empty;
+        public string NameOrEmail { get; set; } = string.Empty;
         [Required]
         public string Password { get; set; } = string.Empty;
     }

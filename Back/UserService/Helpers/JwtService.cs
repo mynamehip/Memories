@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.JsonWebTokens;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -19,7 +20,7 @@ namespace UserService.Helpers
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secret));
-            var claims = new List<Claim> { new Claim(ClaimTypes.Name, user.Username) };
+            var claims = new List<Claim> { new Claim(ClaimTypes.Name, user.Username), new Claim(ClaimTypes.Sid, user.Id.ToString())};
             claims.AddRange(roles.Select(role => new Claim("Role", role)));
             claims.AddRange(permissions.Select(permission => new Claim("Permission", permission)));
 

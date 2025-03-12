@@ -24,7 +24,7 @@ namespace UserService.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] LoginUser user)
+        public async Task<IActionResult> Register([FromBody] Register user)
         {
             try
             {
@@ -40,9 +40,9 @@ namespace UserService.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginUser user)
+        public async Task<IActionResult> Login([FromBody] Login user)
         {
-            var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Username == user.Username);
+            var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Username == user.NameOrEmail || u.Email == user.NameOrEmail);
             if (existingUser == null || !_passwordHasher.VerifyPassword(existingUser.Password, user.Password))
                 return Unauthorized("Invalid credentials.");
 

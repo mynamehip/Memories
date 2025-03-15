@@ -20,7 +20,7 @@ namespace UserService.Helpers
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secret));
-            var claims = new List<Claim> { new Claim(ClaimTypes.Name, user.Username), new Claim(ClaimTypes.Sid, user.Id.ToString())};
+            var claims = new List<Claim> { new Claim(ClaimTypes.Name, user.Username), new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())};
             claims.AddRange(roles.Select(role => new Claim("Role", role)));
             claims.AddRange(permissions.Select(permission => new Claim("Permission", permission)));
 

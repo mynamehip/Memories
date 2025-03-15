@@ -29,5 +29,19 @@ namespace UserService.Controllers
                 return NotFound(ex.Message);
             }
         }
+
+        [HttpGet("getall")]
+        public async Task<IActionResult> GetAllUser()
+        {
+            try
+            {
+                var users = await _userRepository.GetAllAsync();
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

@@ -59,5 +59,6 @@ namespace UserService.Controllers
             var token = _jwtService.GenerateToken(existingUser, roles, permissions);
             return Ok(new { token });
         }
+
     }
 }

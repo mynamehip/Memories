@@ -1,4 +1,5 @@
-﻿using DiaryService.Models;
+﻿using DataAccess.Enum;
+using DiaryService.Models;
 
 namespace DiaryService.DTO
 {
@@ -6,7 +7,7 @@ namespace DiaryService.DTO
     {
         public string Title { get; set; } = string.Empty;
         public List<string> Tag { get; set; } = new List<string>();
-        public string Emotion { get; set; } = string.Empty;
+        public EmotionType Emotion { get; set; } = EmotionType.Normal;
         public List<ContentBlock> Content { get; set; } = new List<ContentBlock>();
     }
 }

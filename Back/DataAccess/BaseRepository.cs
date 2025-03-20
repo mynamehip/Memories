@@ -34,6 +34,12 @@ namespace DataAccess
             await _context.SaveChangesAsync();
         }
 
+        public async Task AddRangeAsync(List<T> entity)
+        {
+            await _dbSet.AddRangeAsync(entity);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task RemoveAsync(T entity)
         {
             _dbSet.Remove(entity);

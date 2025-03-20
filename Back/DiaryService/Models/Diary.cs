@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using DataAccess.Enum;
 
 namespace DiaryService.Models
 {
@@ -22,17 +23,19 @@ namespace DiaryService.Models
         public List<string> Tag { get; set; } = new List<string>();
 
         [BsonElement("emotion")]
-        public string Emotion { get; set; } = string.Empty;
+        [BsonRepresentation(BsonType.String)]
+        public EmotionType Emotion { get; set; } = EmotionType.Normal;
 
         [BsonElement("content")]
         public List<ContentBlock> Content { get; set; } = new List<ContentBlock>();
         [BsonElement("created_at")]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime UpdatedAt {  get; set; } = DateTime.UtcNow;
 
-        //Contruction
+        //Construction
         public Diary() { }
 
-        public Diary(string title, List<string> tag, string emotion, List<ContentBlock> content)
+        public Diary(string title, List<string> tag, EmotionType emotion, List<ContentBlock> content)
         {
             Id = Guid.NewGuid();
             Title = title;
@@ -40,6 +43,7 @@ namespace DiaryService.Models
             Emotion = emotion;
             Content = content;
             CreatedAt = DateTime.UtcNow;
+            UpdatedAt = DateTime.UtcNow;
         }
     }
 }
